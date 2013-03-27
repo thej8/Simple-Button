@@ -1,0 +1,197 @@
+/* ### COLOR ### */
+
+@blue: #222D3A;
+@greytxt: #767c82;
+@grey: #f6f5f2;
+@white: #FFFFFF;
+@black: #000;
+@greybt: darken(#B0B0B0, 10%);
+@fbbt: #3b5998;
+@twbt: darken(#4099FF, 10%);
+@bluebt: #2977ff;
+@redbt: darken(#FF143F, 15%);
+@orangebt: #E69500;
+@turquoisebt: darken(#00DBCD, 10%);
+@greenbt: #4DBB3E;
+
+/* ### MIXIN ### */
+
+.gradient (@color: #F5F5F5, @start: @greytxt, @stop: darken(@grey, 20%)) {
+  background: @color;
+  background: -webkit-gradient(linear,
+                               left bottom,
+                               left top,
+                               color-stop(0, @start),
+                               color-stop(1, @stop));
+  background: -ms-linear-gradient(bottom,
+                                  @start,
+                                  @stop);
+  background: -moz-linear-gradient(center bottom,
+                                   @start 0%,
+                                   @stop 100%);
+  background: -o-linear-gradient(@stop,
+                                 @start);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.button (@couleur : @greybt){
+	.gradient (@couleur, darken(@couleur, 5%), lighten(@couleur, 5%));
+	border: 1px solid transparent;
+	border-bottom: 2px solid darken(@couleur, 20%);
+	border-top: none;
+		&:hover{
+			.gradient (@couleur, darken(@couleur, 10%), @couleur);
+			border-bottom: 2px solid darken(@couleur, 20%);
+		}
+		&:active{
+			.gradient (@couleur, darken(@couleur, 5%), darken(@couleur, 8%));
+			border: 1px solid rgba(256,256,256,0.01);
+		}
+}
+
+.arrondi (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+/* ### BUTTON ### */
+
+[class*='btn']{
+	white-space : nowrap;
+	font-size: 15px;
+	position: relative;
+	line-height: 40px;
+	padding: 0 10px;
+	.arrondi (5px);
+	color: @grey;
+	text-decoration: none;
+	text-shadow: -1px 0 1px darken(@greytxt, 20%);
+	border-top: none;
+	-webkit-box-shadow: 0 0 2px lighten(@black, 20%);
+	box-shadow: 0 0 2px lighten(@black, 20%);
+	.button;
+		&:active{
+			box-shadow: inset 0 0 10px @black;
+		}
+}
+
+[class*='btn']{
+	padding: 10px;
+}
+
+[class*='btn'].fb{
+	.button (@fbbt);
+		i{
+			padding: 10px;
+			padding-right: 18px;
+			border-right: 1px solid darken(@fbbt, 10%);
+		}
+		span{
+			padding: 10px;
+			border-left: 1px solid lighten(@fbbt, 10%);
+		}
+		&:hover{
+			i{
+				border-right: 1px solid darken(@fbbt, 15%);
+			}
+			span{
+				border-left: 1px solid @fbbt;
+			}
+		}
+		&:active{
+			i{
+				border-right: 1px solid darken(@fbbt, 20%);
+			}
+			span{
+				border-left: 1px solid @fbbt;
+			}
+		}
+}
+
+[class*='btn'].tw {
+	.button (@twbt);
+	padding-left: 5px;
+		i{
+			padding: 10px;
+			padding-right: 13px;
+			border-right: 1px solid darken(@twbt, 10%);
+		}
+		span{
+			padding: 10px;
+			border-left: 1px solid lighten(@twbt, 10%);
+		}
+		&:hover{
+			i{
+				border-right: 1px solid darken(@twbt, 15%);
+			}
+			span{
+				border-left: 1px solid @twbt;
+			}
+		}
+		&:active{
+			i{
+				border-right: 1px solid darken(@twbt, 20%);
+			}
+			span{
+				border-left: 1px solid @twbt;
+			}
+		}
+}
+
+[class*='btn'].white {
+	.button (@white);
+	color: darken(@white, 40%);
+}
+
+[class*='btn'].blue {
+	.button (@bluebt);
+}
+
+[class*='btn'].red {
+	.button (@redbt);
+}
+
+[class*='btn'].orange {
+	.button (@orangebt);
+}
+
+[class*='btn'].turquoise {
+	.button (@turquoisebt);
+}
+
+[class*='btn'].green {
+	.button (@greenbt);
+}
+
+.btn-round{
+	.arrondi (20px);
+}
+
+.btn-square{
+	.arrondi (2px);
+}
+
+.btn-block{
+	display: block;
+}
+
+.btn.small{
+	padding: 6px 10px;
+	font-size: 10px;
+	line-height: 27px;
+}
+
+.btn.huge{
+	font-size: 30px;
+	line-height: 56px;
+}
+
+
+
+
+
+
+
